@@ -153,6 +153,11 @@ input::placeholder{
   }
 }
 @media(max-width:800px){
+  body{
+    background-image: url(./images/covid5.jpg);
+    background-color: rgba(0, 0, 0, .2);
+    background-blend-mode: multiply;
+  }
   .show-area .card-group{
     grid-template-columns: repeat(1,1fr);
   }
