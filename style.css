@@ -15,16 +15,6 @@ body{
   background-position: center;
   background-color: rgba(0, 0, 0, .7);
   background-blend-mode: multiply;
-  -webkit-background-image: url(./images/covid1.jfif);
-  -webkit-background-color: rgba(0, 0, 0, .7);
-  -webkit-background-blend-mode: multiply;
-  -moz-background-image: url(./images/covid1.jfif);
-  -moz-background-color: rgba(0, 0, 0, .7);
-  -moz-background-blend-mode: multiply;
-  -o-background-image: url(./images/covid1.jfif);
-  -o-background-color: rgba(0, 0, 0, .7);
-  -o-background-blend-mode: multiply;
-
 }
 .title-area{
   position: absolute;
@@ -157,6 +147,15 @@ input::placeholder{
     background-image: url(./images/covid5.jpg);
     background-color: rgba(0, 0, 0, .2);
     background-blend-mode: multiply;
+    -webkit-background-image: url(./images/covid5.jpg);
+    -webkit-background-color: rgba(0, 0, 0, .2);
+    -webkit-background-blend-mode: multiply;
+    -moz-background-image: url(./images/covid5.jpg);
+    -moz-background-color: rgba(0, 0, 0, .2);
+    -moz-background-blend-mode: multiply;;
+    -o-background-image: url(./images/covid5.jpg);
+    -o-background-color: rgba(0, 0, 0, .2);
+    -o-background-blend-mode: multiply;;
   }
   .show-area .card-group{
     grid-template-columns: repeat(1,1fr);
