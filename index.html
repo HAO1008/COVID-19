@@ -7,7 +7,7 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style-new.css">
+  <link rel="stylesheet" href="./style.css">
   <script src="./lottie/lottie.min.js"></script>
 </head>
 <body>
@@ -70,8 +70,16 @@
 </script>
 <script>
   const btn = document.querySelector('#btn')
+  const input = document.querySelector('#searchinput')
 
   btn.addEventListener('click',getCountry)
+  input.addEventListener('keydown',(e)=>{
+    if(e.keyCode == 13){
+      getCountry()
+    }else{
+      console.log('hahaha');
+    }
+  })
 
   function getCountry(){
     let searchInput = document.querySelector('#searchinput').value.trim()
