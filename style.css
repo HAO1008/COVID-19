@@ -15,14 +15,14 @@ body{
   background-position: center;
   background-color: rgba(0, 0, 0, .7);
   background-blend-mode: multiply;
+  -webkit-background-image: url(./images/covid1.jfif);
   -webkit-background-color: rgba(0, 0, 0, .7);
-  -webkit-background-size: contain;
   -webkit-background-blend-mode: multiply;
+  -moz-background-image: url(./images/covid1.jfif);
   -moz-background-color: rgba(0, 0, 0, .7);
-  -moz-background-size: contain;
   -moz-background-blend-mode: multiply;
+  -o-background-image: url(./images/covid1.jfif);
   -o-background-color: rgba(0, 0, 0, .7);
-  -o-background-size: contain;
   -o-background-blend-mode: multiply;
 
 }
