@@ -5,8 +5,100 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style-new.css">
+  <script src="./lottie/lottie.min.js"></script>
 </head>
 <body>
-  <h1>123</h1>
+  <header>
+    <div class="title-area">
+      <div id="animation"></div>
+      <div id="country-group">
+        <h1>COVID-19 in <span id="country"></span></h1>
+        <img src="" id="flag">
+      </div>
+      <div class="enter">
+        <input type="text" id="searchinput" value="" placeholder="請輸入國家名稱(英文)">
+        <button type="submit" id="btn"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+
+    <div id="no-found">抱歉，我沒有搜尋到這個國家，不要亂打好嗎，沒有國際觀的白癡</div>
+
+    <div class="show-area">
+      <div class="card-group">
+      <!-- card start -->
+      <div class="card">
+        <i class="fas fa-briefcase-medical"></i>
+        <h4>確診人數</h4>
+        <span id="cases">0</span>
+      </div>
+      <!-- card end -->
+      <!-- card start -->
+      <div class="card">
+        <i class="fas fa-skull-crossbones"></i>
+        <h4>死亡人數</h4>
+        <span id="deaths">0</span>
+      </div>
+      <!-- card end -->
+      <!-- card start -->
+      <div class="card">
+        <i class="fas fa-heartbeat"></i>
+        <h4>康復人數</h4>
+        <span id="recovered">0</span>
+      </div>
+      <!-- card end -->
+      <!-- card start -->
+      <div class="card">
+        <i class="fas fa-check-square"></i>
+        <h4>檢驗人數</h4>
+        <span id="tests">0</span>
+      </div>
+      <!-- card end -->
+    </div>
+  </header>
+
+  <script>
+    lottie.loadAnimation({
+        path:'./lottie/covid19.json',   //json文件路径
+        loop:true,
+        autoplay:true,
+        renderer:'canvas',  //渲染方式，有"html"、"canvas"和"svg"三种
+        container:document.getElementById('animation')
+    });
+</script>
+<script>
+  const btn = document.querySelector('#btn')
+
+  btn.addEventListener('click',getCountry)
+
+  function getCountry(){
+    let searchInput = document.querySelector('#searchinput').value.trim()
+    console.log(searchInput);
+
+    // 串接API
+    fetch(`https://corona.lmao.ninja/v2/countries/${searchInput}`)
+    .then(response => response.json())
+    .then(data => {
+      const noFund = document.querySelector('#no-found')
+      const showArea = document.querySelector('.show-area')
+      console.log(data.country);
+      if(data.country){
+        showArea.classList.remove('hide')
+        noFund.classList.remove('show')
+        document.querySelector('#flag').src = data.countryInfo.flag
+        document.querySelector('#country').innerHTML = data.country
+        document.querySelector('#cases').innerHTML = data.cases
+        document.querySelector('#deaths').innerHTML = data.deaths
+        document.querySelector('#recovered').innerHTML = data.recovered
+        document.querySelector('#tests').innerHTML = data.tests
+      }else{
+        noFund.classList.add('show')
+        showArea.classList.add('hide')
+      }
+    })
+  }
+</script>
 </body>
 </html>
