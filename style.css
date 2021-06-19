@@ -168,6 +168,40 @@ input::placeholder{
     padding: 10%;
     margin: 8%;
   }
+  .title-area .enter button{
+    margin-left: -12%;
+  }
+}
+@media(max-width:600px){
+  #country-group{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #flag{
+    width: 50px;
+    margin-left: 0px;
+  }
+  .title-area h1{
+    letter-spacing: 1px;
+    font-size: 2rem;
+  }
+  .title-area .enter input{
+    width: 280px;
+    height: 40px;
+    padding: 10px;
+    font-size: .8rem;
+  }
+  #no-found{
+    color: #fff;
+    width: 70%;
+    font-size: 1rem;
+  }
+  .card span{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
 }
 
 
