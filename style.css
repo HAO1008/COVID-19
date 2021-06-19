@@ -15,6 +15,16 @@ body{
   background-position: center;
   background-color: rgba(0, 0, 0, .7);
   background-blend-mode: multiply;
+  -webkit-background-color: rgba(0, 0, 0, .7);
+  -webkit-background-size: contain;
+  -webkit-background-blend-mode: multiply;
+  -moz-background-color: rgba(0, 0, 0, .7);
+  -moz-background-size: contain;
+  -moz-background-blend-mode: multiply;
+  -o-background-color: rgba(0, 0, 0, .7);
+  -o-background-size: contain;
+  -o-background-blend-mode: multiply;
+
 }
 .title-area{
   position: absolute;
