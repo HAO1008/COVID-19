@@ -102,6 +102,8 @@
         document.querySelector('#recovered').innerHTML = data.recovered
         document.querySelector('#tests').innerHTML = data.tests
       }else{
+        document.querySelector('#flag').src = ''
+        document.querySelector('#country').innerHTML = '┐(´w`)┌'
         noFund.classList.add('show')
         showArea.classList.add('hide')
       }
