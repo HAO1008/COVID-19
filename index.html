@@ -6,9 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
+  <!-- fontawasome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
+  <!-- lottie -->
   <script src="./lottie/lottie.min.js"></script>
+  <!-- chart.js -->
+  <script src="./chart.min.js"></script>
 </head>
 <body>
   <header>
@@ -24,7 +28,7 @@
       </div>
     </div>
 
-    <div id="no-found">抱歉，我沒有搜尋到這個國家，不要亂打好嗎，沒有國際觀的白癡</div>
+    <div id="no-found">抱歉，沒有搜尋到這個國家!!!</div>
 
     <div class="show-area">
       <div class="card-group">
@@ -59,56 +63,74 @@
     </div>
   </header>
 
-  <script>
-    lottie.loadAnimation({
-        path:'./lottie/covid19.json',   //json文件路径
-        loop:true,
-        autoplay:true,
-        renderer:'canvas',  //渲染方式，有"html"、"canvas"和"svg"三种
-        container:document.getElementById('animation')
-    });
-</script>
-<script>
-  const btn = document.querySelector('#btn')
-  const input = document.querySelector('#searchinput')
+  <section class="fixed-bar">
+    <ul>
+      <li><a href="#"><i class="fas fa-lungs-virus"></i></a></li>
+      <li><a href="#"><i class="fas fa-syringe"></i></a></li>
+      <li class="chart-btn"><a href="#"><i class="fas fa-newspaper"></i></a></li>
+    </ul>
+  </section>
 
-  btn.addEventListener('click',getCountry)
-  input.addEventListener('keydown',(e)=>{
-    if(e.keyCode == 13){
-      getCountry()
-    }else{
-      console.log('hahaha');
-    }
-  })
+  <!-- 病毒介紹 -->
+  <content class="covid19">
+    <div class="introduction">
+      <i class="fas fa-times"></i>
+      <div class="int-text">
+        <h1>新冠肺炎 COVID-19</h1>
+        <p>2019年12月起中國湖北武漢市發現不明原因肺炎群聚，疫情初期個案多與武漢華南海鮮城活動史有關，中國官方於2020年1月9日公布其病原體為新型冠狀病毒。此疫情隨後迅速在中國其他省市與世界各地擴散，並證實可有效人傳人。</p>
+      </div>
+      <div class="int-sm-img">
+        <img class="img-avtive" src="./images/int1.jfif" alt="">
+        <img src="./images/int2.jfif" alt="">
+        <img src="./images/int3.jfif" alt="">
+      </div>
+    </div>
+  </content>
+  <!-- 疫苗介紹 -->
+  <content class="vaccine">
+    <i class="fas fa-times"></i>
+    <ul class="cards">
+      <!-- card -->
+      <li>
+        <a class="vac-card" target="_blank" href="https://www.astrazeneca.com/country-sites/taiwan.html">
+          <!-- <h1>AZ疫苗</h1> -->
+          <img src="./images/logoAZ.jpg" alt="">
+          <div class="vac-card-text">
+            <h2>AZ疫苗</h2>
+            <p>該疫苗的儲存條件為2～8°C，保護力為70%，接種後的輕微副作用。特別的是，年紀愈長，AZ疫苗的副作用反而較少。</p>
+          </div>
+        </a>
+      </li>
+      <!-- card -->
+      <li>
+        <a class="vac-card" target="_blank" href="https://www.modernatx.com/">
+          <img src="./images/logoMod.jpg" alt="">
+          <div class="vac-card-text">
+            <h2>莫德納</h2>
+            <p>莫德納疫苗的保護力為94%，可製造觸發免疫反應的蛋白質，並產生抗體，根據統計，莫德納疫苗接種副作用的比例略高於AZ疫苗。</p>
+          </div>
+        </a>
+      </li>
+      <!-- card -->
+      <li>
+        <a class="vac-card" target="_blank" href="https://www.medigenvac.com/public/">
+          <img src="./images/logoMVC.jpeg" alt="">
+          <div class="vac-card-text">
+            <h2>高端疫苗</h2>
+            <p>國產部分，高端疫苗為重組蛋白疫苗，保護力則尚未明確，兩款國產疫苗的二期試驗已進入收尾階段，最快能在6月下旬通過緊急授權。</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </content>
+  <!-- 圖表 -->
+  <content class="chart">
+    <i class="fas fa-times"></i>
+    <canvas id="chart"></canvas>
+  </content>
 
-  function getCountry(){
-    let searchInput = document.querySelector('#searchinput').value.trim()
-    console.log(searchInput);
 
-    // 串接API
-    fetch(`https://corona.lmao.ninja/v2/countries/${searchInput}`)
-    .then(response => response.json())
-    .then(data => {
-      const noFund = document.querySelector('#no-found')
-      const showArea = document.querySelector('.show-area')
-      console.log(data.country);
-      if(data.country){
-        showArea.classList.remove('hide')
-        noFund.classList.remove('show')
-        document.querySelector('#flag').src = data.countryInfo.flag
-        document.querySelector('#country').innerHTML = data.country
-        document.querySelector('#cases').innerHTML = data.cases
-        document.querySelector('#deaths').innerHTML = data.deaths
-        document.querySelector('#recovered').innerHTML = data.recovered
-        document.querySelector('#tests').innerHTML = data.tests
-      }else{
-        document.querySelector('#flag').src = ''
-        document.querySelector('#country').innerHTML = '┐(´w`)┌'
-        noFund.classList.add('show')
-        showArea.classList.add('hide')
-      }
-    })
-  }
-</script>
+  
+  <script src="./index.js"></script>
 </body>
 </html>
